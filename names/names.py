@@ -1,22 +1,32 @@
 import time
+from binary_search_tree import BSTNode as BinarySearchTree
 
 start_time = time.time()
 
-f = open('names_1.txt', 'r')
+f = open('names/names_1.txt', 'r')
 names_1 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
-f = open('names_2.txt', 'r')
+f = open('names/names_2.txt', 'r')
 names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
+'''
+# Replace the nested for loops below with your improvements 
+Prior code was O(n^2) 9.23 sec
+With bst, it's O(nlogn) 0.08 sec
+STRETCH: Using python's set and intersection method, the runtime is 0.006
+'''
+# bst = BinarySearchTree(names_1[0])
+# for index in range(len(names_1)):
+#     if index is not 0:
+#         bst.insert(names_1[index])
+# for name_2 in names_2:
+#     if bst.contains(name_2):
+#         duplicates.append(name_2)
 
-# Replace the nested for loops below with your improvements
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+duplicates = set(names_1).intersection(names_2)
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
